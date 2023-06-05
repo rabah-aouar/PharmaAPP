@@ -11,6 +11,7 @@ import org.opencv.videoio.Videoio.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 import org.opencv.core.Mat;
 import org.opencv.videoio.Videoio.*;
@@ -26,43 +27,38 @@ public class CaptureCameraController implements Initializable {
     public static Thread thread;
     public static Object lock = new Object();
     public VideoCapture video;
+    ImageProcessing imageProcessing = new ImageProcessing();
 
     @FXML
     private ImageView imageView;
+    private String scriptPath;
 
 
     @FXML
     void CaptureONMouseClicked(MouseEvent event) throws InterruptedException {
+        thread.stop();
+        thread.stop();
         imageView.setImage(image);
-        thread.stop();
-        thread.stop();
+        String workingDir = System.getProperty("user.dir");
+
+        // Define the relative path and filename
+        String relativePath = "images/captured_image.jpg"; // Modify the path and filename as needed
+
+        // Create the absolute path
+        String imagepath = String.valueOf(Path.of(workingDir, relativePath));
+
+         ImageProcessing.executePythonFile(scriptPath,imagepath);
+
+
     }
 
     @FXML
     void repeatOnMouseClicked(MouseEvent event) throws InterruptedException {
-            /*
-        thread = new Thread(() -> {
-            while (true) {
-                synchronized (lock) {
-                    try {
-                        finalGrabber.start();
-                        frame = finalGrabber.grab();
-                        image = converter.convert(frame);
-                        imageView.setImage(image);
-                    } catch (FrameGrabber.Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        thread.start();
-
-             */
 
         thread = new Thread(() -> {
             while (true) {
                 synchronized (lock) {
-                    video = new VideoCapture("http://192.168.11.153:8080/video");
+                    video = new VideoCapture(0);
                     if (video.isOpened()) System.out.println("it works 22");
                     video.read(frame);
                     Mat processedFrame = imageProcessing.processFrame(frame);
@@ -78,7 +74,7 @@ public class CaptureCameraController implements Initializable {
     }
 
 
-    ImageProcessing imageProcessing = new ImageProcessing();
+
 
 
 
@@ -89,39 +85,11 @@ public class CaptureCameraController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        /*
-        String rtspUrl = "http://http://192.168.43.1:8080/"; // Replace with your IP camera's RTSP URL
-
-
-        finalGrabber= new FFmpegFrameGrabber(rtspUrl);
-        //finalGrabber.setFormat("h264");
-
-        thread = new Thread(() -> {
-                while (true) {
-                    synchronized (lock) {
-                        try {
-                            finalGrabber.start();
-                            frame = finalGrabber.grab();
-                            image = converter.convert(frame);
-                            imageView.setImage(image);
-                        } catch (FrameGrabber.Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            });
-        thread.start();
-        }
-
-
-        */
-
-
         thread = new Thread(() -> {
             while (true) {
                 synchronized (lock) {
                     frame=new Mat();
-                    video = new VideoCapture("http://192.168.43.1:8080/video");
+                    video = new VideoCapture(0);
                     if (video.isOpened()) System.out.println("it works");
                     video.read(frame);
                     Mat processedFrame = imageProcessing.processFrame(frame);
@@ -132,6 +100,16 @@ public class CaptureCameraController implements Initializable {
         });
 
         thread.start();
+
+
+
+        String workingDir = System.getProperty("user.dir");
+
+        // Define the relative path and filename
+        String relativePath = "images/new_product.py"; // Modify the path and filename as needed
+
+        // Create the absolute path
+        scriptPath = String.valueOf(Path.of(workingDir, relativePath));
     }
 
 

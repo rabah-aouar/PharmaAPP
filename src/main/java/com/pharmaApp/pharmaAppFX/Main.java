@@ -28,9 +28,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-
-            FXMLLoader loginLoader = new FXMLLoader(Main.class.getResource("main.fxml"));
-            Scene scene = new Scene(loginLoader.load(), 705, 542);
+            FXMLLoader fxmlLoader =new FXMLLoader(Main.class.getResource("main.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
             stage.setScene(scene);
             stage.centerOnScreen();
             stage.setResizable(false);

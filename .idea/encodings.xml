@@ -2,6 +2,23 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pharmaApp/pharmaAppFX/Constants.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pharmaApp/pharmaAppFX/controllers/SideBarController.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pharmaApp/pharmaAppFX/controllers/SideBarController.java.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pharmaApp/pharmaAppFX/controllers/produits/AjouterProduitDialog.fxml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pharmaApp/pharmaAppFX/controllers/produits/AjouterProduitDialogController.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pharmaApp/pharmaAppFX/controllers/produits/ProduitsView.fxml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pharmaApp/pharmaAppFX/controllers/produits/ProduitsViewController.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pharmaApp/pharmaAppFX/controllers/produits/SideBar.fxml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pharmaApp/pharmaAppFX/controllers/stock" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/com/pharmaApp/pharmaAppFX/fonts" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/com/pharmaApp/pharmaAppFX/fxml/AjouterProduitDialog.fxml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/com/pharmaApp/pharmaAppFX/fxml/ProduitsView.fxml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/com/pharmaApp/pharmaAppFX/fxml/SideBar.fxml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/com/pharmaApp/pharmaAppFX/images" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/com/pharmaApp/pharmaAppFX/labels_ar.properties" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/com/pharmaApp/pharmaAppFX/labels_fr.properties" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/fonts" charset="windows-1252" />
   </component>
 </project>

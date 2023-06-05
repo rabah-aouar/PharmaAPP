@@ -13,17 +13,12 @@ import org.opencv.videoio.VideoCapture;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
 public class ImageProcessing {
-
-
-
 
 
     public Mat processFrame(Mat img) {
@@ -87,21 +82,69 @@ public class ImageProcessing {
         return mat;
     }
 
-    public static void saveCapturedImage(Mat img) {
+    public static Path saveCapturedImage(Mat img) {
         Imgproc.resize(img, img, new Size(640, 480));
         MatOfByte m = new MatOfByte();
         Imgcodecs.imencode(".jpg", img, m);
         byte[] byteArray = m.toArray();
+        Path filePath = null;
         try {
-            Path filePath = Files.createTempFile("captured_image", ".jpg");
+            // Get the current working directory
+            String workingDir = System.getProperty("user.dir");
+
+            // Define the relative path and filename
+            String relativePath = "images/captured_image.jpg"; // Modify the path and filename as needed
+
+            // Create the absolute path
+            filePath = Path.of(workingDir, relativePath);
+
+            // Write the image to the specified path
             Files.write(filePath, byteArray, StandardOpenOption.CREATE);
             System.out.println("Image saved: " + filePath);
+
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return filePath;
+    }
+
+    public static void executePythonFile(String  scriptPath, String imagePath) {
+        try {
+            // Start the Python process
+            ProcessBuilder processBuilder = new ProcessBuilder("python", scriptPath, imagePath);
+            Process process = processBuilder.start();
+            // Read the output of the Python process
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            StringBuilder output = new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
+            }
+
+            // Wait for the process to finish
+            int exitCode = process.waitFor();
+
+            // Print the output and exit code
+            System.out.println("Output:\n" + output.toString());
+            System.out.println("Exit Code: " + exitCode);
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }
 
+
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
